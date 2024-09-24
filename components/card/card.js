@@ -1,6 +1,6 @@
 export function createCharacterCard(imageLink, characterName, characterStatus, characterType, characterOccurrences) {
     const main = document.querySelector("main");
-    console.log(main)
+    
 
     const characterCard = document.createElement("li");
 

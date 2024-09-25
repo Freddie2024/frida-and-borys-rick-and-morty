@@ -9,6 +9,7 @@ const navigation = document.querySelector('[data-js="navigation"]');
 const prevButton = document.querySelector('[data-js="button-prev"]');
 const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
+const main = document.querySelector("main");
 
 // States
 let maxPage;
@@ -17,64 +18,67 @@ let searchQuery = "";
 let pageIndex = 1;
 
 async function fetchCharacters(pageIndex, searchQuery) {
-  const charactersData = await fetch(`https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`);
+  main.innerHTML = ` `;
+  const charactersData = await fetch(
+    `https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`
+  );
   const data = await charactersData.json();
-  
+
   maxPage = data.info.pages;
-  data.results.forEach(element => {
+  data.results.forEach((element) => {
     const imageLink = element.image;
     const characterName = element.name;
     const characterStatus = element.status;
     const characterType = element.type;
     const characterOccurrences = element.episode.length;
-    createCharacterCard(imageLink, characterName, characterStatus, characterType, characterOccurrences)
+    createCharacterCard(
+      imageLink,
+      characterName,
+      characterStatus,
+      characterType,
+      characterOccurrences
+    );
   });
 }
 
-prevButton.setAttribute("disabled", "disabled")
+prevButton.setAttribute("disabled", "disabled");
 
-fetchCharacters(pageIndex)
+fetchCharacters(pageIndex);
 
 nextButton.addEventListener("click", () => {
-  
-  const main = document.querySelector("main");
-  main.innerHTML = ` `
-
+  main.innerHTML = ` `;
 
   if (pageIndex <= maxPage) {
     pageIndex++;
     fetchCharacters(pageIndex);
     prevButton.removeAttribute("disabled");
-    pagination.textContent = pageIndex +  " / 42" ;
+    pagination.textContent = pageIndex + " / 42";
     if (pageIndex == maxPage) {
-      console.log("reached last page")
+      console.log("reached last page");
       return nextButton.setAttribute("disabled", "disabled");
     }
   }
-})
+});
 
 prevButton.addEventListener("click", () => {
-  
   const main = document.querySelector("main");
-  main.innerHTML = ` `
-
+  main.innerHTML = ` `;
 
   if (pageIndex >= 1) {
     pageIndex--;
     fetchCharacters(pageIndex);
     nextButton.removeAttribute("disabled");
-    pagination.textContent = pageIndex +  " / 42" ;
+    pagination.textContent = pageIndex + " / 42";
     if (pageIndex == 1) {
-      console.log("reached first page")
+      console.log("reached first page");
       return prevButton.setAttribute("disabled", "disabled");
     }
   }
-})
+});
 
-const searchBar = createSearchBar((event) => {
-    // event.preventDefault();
-    const inputText = event.target.elements.query.value;
-    console.log(inputText)
-    searchQuery = "&name=" + inputText;
-    fetchCharacters(1, searchQuery)
-})
+createSearchBar((event) => {
+  event.preventDefault();
+  const inputText = event.target.elements.query.value;
+  searchQuery = "&name=" + inputText;
+  fetchCharacters(1, searchQuery);
+});

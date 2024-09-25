@@ -1,11 +1,15 @@
-export function createCharacterCard(imageLink, characterName, characterStatus, characterType, characterOccurrences) {
-    const main = document.querySelector("main");
-    console.log(main)
+export function createCharacterCard(
+  imageLink,
+  characterName,
+  characterStatus,
+  characterType,
+  characterOccurrences
+) {
+  const main = document.querySelector("main");
 
-    const characterCard = document.createElement("li");
+  const characterCard = document.createElement("li");
 
-
-    characterCard.innerHTML = `
+  characterCard.innerHTML = `
    
       <ul class="card-container" data-js="card-container">
         <li class="card">
@@ -31,6 +35,5 @@ export function createCharacterCard(imageLink, characterName, characterStatus, c
         </li>
       </ul>
       `;
-main.append(characterCard);
-
+  main.append(characterCard);
 }

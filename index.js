@@ -1,6 +1,5 @@
 import { createCharacterCard } from "./components/card/card.js";
 import { createSearchBar } from "./components/search-bar/search-bar.js";
-
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -13,12 +12,22 @@ const main = document.querySelector("main");
 
 // States
 let maxPage;
-const page = 1;
 let searchQuery = "";
 let pageIndex = 1;
 
-async function fetchCharacters(pageIndex, searchQuery) {
+prevButton.setAttribute("disabled", "disabled");
+
+export async function fetchCharacters(pageIndex, searchQuery = "") {
   main.innerHTML = ` `;
+  createSearchBar((event) => {
+    event.preventDefault();
+    const inputText = event.target.elements.query.value;
+    searchQuery = "&name=" + inputText;
+    fetchCharacters(1, searchQuery);
+    prevButton.setAttribute("disabled", "disabled");
+    nextButton.setAttribute("disabled", "disabled");
+    pagination.textContent = "1 / 1";
+  });
   const charactersData = await fetch(
     `https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`
   );
@@ -41,9 +50,7 @@ async function fetchCharacters(pageIndex, searchQuery) {
   });
 }
 
-prevButton.setAttribute("disabled", "disabled");
-
-fetchCharacters(pageIndex);
+fetchCharacters(pageIndex, searchQuery);
 
 nextButton.addEventListener("click", () => {
   main.innerHTML = ` `;
@@ -57,6 +64,7 @@ nextButton.addEventListener("click", () => {
       console.log("reached last page");
       return nextButton.setAttribute("disabled", "disabled");
     }
+    console.log(pageIndex);
   }
 });
 
@@ -76,9 +84,4 @@ prevButton.addEventListener("click", () => {
   }
 });
 
-createSearchBar((event) => {
-  event.preventDefault();
-  const inputText = event.target.elements.query.value;
-  searchQuery = "&name=" + inputText;
-  fetchCharacters(1, searchQuery);
-});
+prevButton.setAttribute("disabled", "disabled");

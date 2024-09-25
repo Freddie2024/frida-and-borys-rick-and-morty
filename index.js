@@ -14,12 +14,12 @@ const pagination = document.querySelector('[data-js="pagination"]');
 let maxPage;
 const page = 1;
 const searchQuery = "";
-let pageIndex = 41;
+let pageIndex = 39;
 
 async function fetchCharacters(pageIndex) {
   const charactersData = await fetch(`https://rickandmortyapi.com/api/character?page=${pageIndex}`);
   const data = await charactersData.json();
-  console.log(pageIndex)
+  
   maxPage = data.info.pages;
   data.results.forEach(element => {
     const imageLink = element.image;
@@ -31,17 +31,43 @@ async function fetchCharacters(pageIndex) {
   });
 }
 
+prevButton.setAttribute("disabled", "disabled")
+
 fetchCharacters(pageIndex)
 
 nextButton.addEventListener("click", () => {
-  console.log(pageIndex)
+  
   const main = document.querySelector("main");
   main.innerHTML = ` `
-pageIndex++;
-if (pageIndex <= maxPage) { 
-return fetchCharacters(pageIndex);
-} else {
-   pageIndex = maxPage;
-   return fetchCharacters(pageIndex);}
+
+
+  if (pageIndex <= maxPage) {
+    pageIndex++;
+    fetchCharacters(pageIndex);
+    prevButton.removeAttribute("disabled");
+    pagination.textContent = pageIndex +  " / 42" ;
+    if (pageIndex == maxPage) {
+      console.log("reached last page")
+      return nextButton.setAttribute("disabled", "disabled");
+    }
+  }
+})
+
+prevButton.addEventListener("click", () => {
+  
+  const main = document.querySelector("main");
+  main.innerHTML = ` `
+
+
+  if (pageIndex >= 1) {
+    pageIndex--;
+    fetchCharacters(pageIndex);
+    nextButton.removeAttribute("disabled");
+    pagination.textContent = pageIndex +  " / 42" ;
+    if (pageIndex == 1) {
+      console.log("reached first page")
+      return prevButton.setAttribute("disabled", "disabled");
+    }
+  }
 })
 

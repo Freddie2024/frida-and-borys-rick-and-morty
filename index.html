@@ -11,6 +11,13 @@
   </head>
   <body>
     <h1 class="title">Rick and More</h1>
+    <nav class="navigation" data-js="navigation"></nav>
+      <button class="button button--prev" data-js="button-prev">
+        previous
+      </button>
+      <span class="navigation__pagination" data-js="pagination">1 / 42</span>
+      <button class="button button--next" data-js="button-next">next</button>
+    </nav>
     <main>
       <div class="search-bar-container" data-js="search-bar-container">
         <form action="" class="search-bar" data-js="search-bar">
@@ -31,13 +38,7 @@
         </form>
       </div>
     </main>
-    <nav class="navigation" data-js="navigation">
-      <button class="button button--prev" data-js="button-prev">
-        previous
-      </button>
-      <span class="navigation__pagination" data-js="pagination">1 / 1</span>
-      <button class="button button--next" data-js="button-next">next</button>
-    </nav>
+    
     <script type="module" src="./index.js"></script>
   </body>
 </html>

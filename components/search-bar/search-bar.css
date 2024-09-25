@@ -10,14 +10,14 @@
 }
 
 .search-bar__input {
-  background-color: transparent;
+  background-color: rgb(253, 255, 0);
   border: none;
   color: var(--color-primary);
 }
 
 .search-bar__button {
   border: none;
-  background-color: transparent;
+  background-color: rgb(253, 255, 0);
 }
 
 .search-bar__input:focus {

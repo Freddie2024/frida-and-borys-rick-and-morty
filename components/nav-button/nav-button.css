@@ -1,5 +1,6 @@
 .button {
   border: none;
+  background-color: rgb(253, 255, 0);
 }
 
 .button:hover {

@@ -1,10 +1,10 @@
 import { createCharacterCard } from "./components/card/card.js";
+import { createSearchBar } from "./components/search-bar/search-bar.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
 );
-const searchBar = document.querySelector('[data-js="search-bar"]');
 const navigation = document.querySelector('[data-js="navigation"]');
 const prevButton = document.querySelector('[data-js="button-prev"]');
 const nextButton = document.querySelector('[data-js="button-next"]');
@@ -13,11 +13,11 @@ const pagination = document.querySelector('[data-js="pagination"]');
 // States
 let maxPage;
 const page = 1;
-const searchQuery = "";
-let pageIndex = 39;
+let searchQuery = "";
+let pageIndex = 1;
 
-async function fetchCharacters(pageIndex) {
-  const charactersData = await fetch(`https://rickandmortyapi.com/api/character?page=${pageIndex}`);
+async function fetchCharacters(pageIndex, searchQuery) {
+  const charactersData = await fetch(`https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`);
   const data = await charactersData.json();
   
   maxPage = data.info.pages;
@@ -71,3 +71,10 @@ prevButton.addEventListener("click", () => {
   }
 })
 
+const searchBar = createSearchBar((event) => {
+    // event.preventDefault();
+    const inputText = event.target.elements.query.value;
+    console.log(inputText)
+    searchQuery = "&name=" + inputText;
+    fetchCharacters(1, searchQuery)
+})

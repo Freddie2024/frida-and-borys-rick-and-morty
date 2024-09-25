@@ -10,7 +10,7 @@ export function createCharacterCard(
   const characterCard = document.createElement("li");
 
   characterCard.innerHTML = `
-   
+
       <ul class="card-container" data-js="card-container">
         <li class="card">
           <div class="card__image-container">

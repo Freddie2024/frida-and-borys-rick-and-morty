@@ -34,6 +34,18 @@ export async function fetchCharacters(pageIndex, searchQuery = "") {
   const data = await charactersData.json();
 
   maxPage = data.info.pages;
+
+const page = 1;
+const searchQuery = "";
+
+async function fetchCharacters() {
+  const charactersData = await fetch(
+    "https://rickandmortyapi.com/api/character"
+  );
+  const data = await charactersData.json();
+  console.log(data);
+  maxPage = data.info.pages;
+  console.log(maxPage);
   data.results.forEach((element) => {
     const imageLink = element.image;
     const characterName = element.name;
@@ -85,3 +97,4 @@ prevButton.addEventListener("click", () => {
 });
 
 prevButton.setAttribute("disabled", "disabled");
+fetchCharacters();

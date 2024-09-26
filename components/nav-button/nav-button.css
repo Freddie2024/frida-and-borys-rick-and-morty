@@ -1,10 +1,10 @@
 .button {
   color: var(--color-primary);
   font-family: "Comic Sans MS", "Comic Sans", cursive;
-  border: 2px solid rgb(253, 255, 0);
+  border: 2px solid var(--color-tertiary);
   background-color: var(--color-secondary);
 }
 
 .button:hover {
-  background-color: rgb(253, 255, 0);
+  background-color: var(--color-tertiary);
 }

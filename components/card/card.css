@@ -1,6 +1,6 @@
 .card-container {
   margin-bottom: 10px;
-  border: 2px solid rgb(253, 255, 0);
+  border: 2px solid var(--color-tertiary);
 }
 .card {
   width: 300px;

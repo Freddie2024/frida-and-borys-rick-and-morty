@@ -3,6 +3,7 @@
 }
 
 .search-bar {
+  border: 2px solid var(--color-tertiary);
   padding: 10px 20px;
   background-color: var(--color-secondary);
   display: grid;
@@ -10,7 +11,7 @@
 }
 
 .search-bar__input {
-  background-color: rgb(253, 255, 0);
+  background-color: var(--color-tertiary);
   border: none;
   color: var(--color-primary);
 }
@@ -22,7 +23,7 @@
 
 .search-bar__button {
   border: none;
-  background-color: rgb(253, 255, 0);
+  background-color: var(--color-tertiary);
 }
 
 .search-bar__input:focus {

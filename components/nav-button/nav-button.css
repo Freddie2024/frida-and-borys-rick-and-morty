@@ -3,6 +3,7 @@
   font-family: var(--font-family);
   border: 2px solid var(--color-tertiary);
   background-color: var(--color-secondary);
+  transition: background-color 0.25s 100ms;
 }
 
 .button:hover {

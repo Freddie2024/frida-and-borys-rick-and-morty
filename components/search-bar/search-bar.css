@@ -15,6 +15,11 @@
   color: var(--color-primary);
 }
 
+::placeholder {
+  color: var(--color-primary);
+  font-family: "Comic Sans MS", "Comic Sans", cursive;
+}
+
 .search-bar__button {
   border: none;
   background-color: rgb(253, 255, 0);

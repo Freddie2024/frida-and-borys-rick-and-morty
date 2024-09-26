@@ -21,6 +21,12 @@
   font-family: var(--font-family);
 }
 
+.search-bar__input:not(:placeholder-shown) {
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
+  font-family: var(--font-family);
+}
+
 .search-bar__button {
   border: none;
   background-color: var(--color-tertiary);
@@ -28,6 +34,11 @@
 
 .search-bar__input:focus {
   outline: none;
+}
+
+.search-bar__input:active {
+  background-color: var(--color-tertiary);
+  color: var(--color-primary);
 }
 
 .search-bar__icon {

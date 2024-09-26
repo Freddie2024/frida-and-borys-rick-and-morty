@@ -32,5 +32,5 @@
 
 .search-bar__icon {
   width: 20px;
-  /* filter: invert(); */
+  filter: invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(90%); 
 }

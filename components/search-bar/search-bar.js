@@ -1,5 +1,5 @@
 export function createSearchBar(onSubmit) {
-  const main = document.querySelector("main");
+  const header = document.querySelector("h1");
   const searchBar = document.createElement("div");
   searchBar.classList.add("search-bar-container");
   searchBar.setAttribute("data-js", "search-bar-container");
@@ -23,7 +23,7 @@ export function createSearchBar(onSubmit) {
         </form>
     `;
 
-  main.append(searchBar);
+  header.append(searchBar);
   const form = document.querySelector('[data-js="search-bar"]');
   form.addEventListener("submit", onSubmit);
 }

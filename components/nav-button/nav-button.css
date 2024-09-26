@@ -8,3 +8,7 @@
 .button:hover {
   background-color: var(--color-tertiary);
 }
+
+.button:disabled:hover {
+  background-color: var(--color-secondary);
+}

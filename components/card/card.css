@@ -5,6 +5,10 @@
 .card {
   width: 300px;
   background-color: var(--color-secondary);
+  }
+
+.card-container:hover {
+  transform: scale(1.05,1.05);
 }
 
 .card__info {

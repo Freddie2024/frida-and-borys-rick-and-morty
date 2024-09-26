@@ -7,4 +7,6 @@
 .navigation__pagination {
   display: grid;
   place-items: center;
+  border: 2px solid var(--color-tertiary);
+  background-color: var(--color-secondary);
 }

@@ -8,6 +8,7 @@
 
 .button:hover {
   background-color: var(--color-tertiary);
+  transform: scale(1.1,1.1);
 }
 
 .button:disabled:hover {

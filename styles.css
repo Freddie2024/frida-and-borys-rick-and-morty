@@ -36,3 +36,20 @@ main {
   padding: 10px 0;
   text-align: center;
 }
+
+@media (max-width: 600px) {
+  padding: 10px;
+}
+
+main {
+  flex-direction: column;
+  align-items: center;
+}
+/*
+.title {
+  width: 100%;
+}
+*/
+.title img {
+  max-width: 100%;
+}

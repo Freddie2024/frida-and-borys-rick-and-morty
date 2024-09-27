@@ -1,7 +1,7 @@
 .navigation {
   height: 30px;
   display: grid;
-  justify-content: space-between;
+  justify-content: space-around;
   grid-template-columns: 100px 100px 100px;
 }
 
@@ -10,4 +10,10 @@
   place-items: center;
   border: 2px solid var(--color-tertiary);
   background-color: var(--color-secondary);
+}
+
+@media (max-width: 600px) {
+  .navigation {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }

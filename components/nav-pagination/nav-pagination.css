@@ -1,7 +1,7 @@
 .navigation {
   height: 30px;
   display: grid;
-  justify-content: space-around;
+  justify-content: space-evenly;
   grid-template-columns: 100px 100px 100px;
 }
 

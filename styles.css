@@ -38,9 +38,7 @@ main {
 }
 
 @media (max-width: 600px) {
-  padding: 10px;
-}
-
+  
 main {
   flex-direction: column;
   align-items: center;
@@ -53,4 +51,6 @@ main {
 body {
   font-size: 14px;
   background-size: contain;
+  padding: 10px;
+}
 }

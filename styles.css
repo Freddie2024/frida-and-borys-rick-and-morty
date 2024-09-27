@@ -45,11 +45,12 @@ main {
   flex-direction: column;
   align-items: center;
 }
-/*
-.title {
-  width: 100%;
-}
-*/
+
 .title img {
   max-width: 100%;
+}
+
+body {
+  font-size: 14px;
+  background-size: contain;
 }

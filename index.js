@@ -1,6 +1,6 @@
 import { createCharacterCard } from "./components/card/card.js";
 import { createSearchBar } from "./components/search-bar/search-bar.js";
-import { createShowAllButton } from "./components/all-button/all-button.js";
+import { createShowAllButton } from "./components/show-all-button/show-all-button.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -27,6 +27,9 @@ if (existingCharacterContainer) {
   existingCharacterContainer.remove();
 }
 
+const existingSearchBar = document.querySelector(".search-bar-container");
+  if (!existingSearchBar) {
+
   createSearchBar((event) => {
     event.preventDefault();
     const inputText = event.target.elements.query.value;
@@ -38,8 +41,10 @@ if (existingCharacterContainer) {
     showAllButton.style.display = "block";
     console.log("Button display is now:", showAllButton.style.display);
   });
+  };
 
   const showAllButton = createShowAllButton(main, fetchCharacters);
+
   const charactersData = await fetch(
     `https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`
   );
@@ -47,7 +52,6 @@ if (existingCharacterContainer) {
 
   const characterContainer = document.createElement("div");
   characterContainer.classList.add("character-container");
-
 
   maxPage = data.info.pages;
   data.results.forEach((element) => {

@@ -70,6 +70,7 @@ const existingSearchBar = document.querySelector(".search-bar-container");
     characterContainer.append(characterCard);
   });
   main.append(characterContainer);
+  updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
 }
 
 fetchCharacters(pageIndex, searchQuery);
@@ -80,13 +81,7 @@ nextButton.addEventListener("click", () => {
   if (pageIndex <= maxPage) {
     pageIndex++;
     fetchCharacters(pageIndex);
-    prevButton.removeAttribute("disabled");
-    pagination.textContent = pageIndex + " / 42";
-    if (pageIndex == maxPage) {
-      console.log("reached last page");
-      return nextButton.setAttribute("disabled", "disabled");
-    }
-    console.log(pageIndex);
+    updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
   }
 });
 
@@ -97,11 +92,6 @@ prevButton.addEventListener("click", () => {
   if (pageIndex >= 1) {
     pageIndex--;
     fetchCharacters(pageIndex);
-    nextButton.removeAttribute("disabled");
-    pagination.textContent = pageIndex + " / 42";
-    if (pageIndex == 1) {
-      console.log("reached first page");
-      return prevButton.setAttribute("disabled", "disabled");
-    }
+    updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
   }
 });

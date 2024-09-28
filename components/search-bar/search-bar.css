@@ -18,10 +18,10 @@
   border: none;
   border-top-left-radius: 20px; 
   border-bottom-left-radius: 20px;
-  color: var(--color-primary);
-  font-family: var(--font-family);
-  font-size: 16px;
+  margin-right: 0; 
+  flex: 1; 
   text-align: center;
+  max-width: 175px;
 }
 
 .search-bar__input:focus {
@@ -48,6 +48,11 @@
   border-top-right-radius: 20px; 
   border-bottom-right-radius: 20px;
   background-color: var(--color-tertiary);
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  cursor: pointer;
+  margin-left: 0px; 
 }
 
 /* tried to make background-color NOT turn grey after input, but it does not work
@@ -57,8 +62,9 @@
 }
 */
 .search-bar__icon {
-  width: 20px;
-  filter: invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(90%); 
+  height: 22px;
+  width: 22px;
+  filter: invert(65%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(90%);
 }
 
 @media (max-width: 600px) {
@@ -68,5 +74,14 @@
 .search-bar__input:focus,
 .search-bar__input:active {
     font-size: 14px;
+  }
+  .search-bar__icon {
+    height: 20px;
+    width: 20px;
+    filter: invert(65%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(90%);
+  }
+
+  .search-bar__input {
+    max-width: 150px;
   }
 }

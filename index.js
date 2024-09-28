@@ -81,6 +81,10 @@ nextButton.addEventListener("click", () => {
   if (pageIndex <= maxPage) {
     pageIndex++;
     fetchCharacters(pageIndex);
+    pagination.classList.add("rotate");
+    setTimeout(() => {
+      pagination.classList.remove("rotate");
+    }, 600); 
     updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
   }
 });
@@ -92,6 +96,10 @@ prevButton.addEventListener("click", () => {
   if (pageIndex >= 1) {
     pageIndex--;
     fetchCharacters(pageIndex);
+    pagination.classList.add("rotate");
+    setTimeout(() => {
+      pagination.classList.remove("rotate");
+    }, 600);
     updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
   }
 });

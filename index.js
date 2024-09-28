@@ -1,6 +1,7 @@
 import { createCharacterCard } from "./components/card/card.js";
-
 import { createSearchBar } from "./components/search-bar/search-bar.js";
+import { createShowAllButton } from "./components/all-button/all-button.js";
+
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -29,7 +30,11 @@ async function fetchCharacters(pageIndex, searchQuery = "") {
     prevButton.setAttribute("disabled", "disabled");
     nextButton.setAttribute("disabled", "disabled");
     pagination.textContent = "1 / 1";
+    showAllButton.style.display = "block";
+    console.log("Button display is now:", showAllButton.style.display);
   });
+
+  const showAllButton = createShowAllButton(main, fetchCharacters);
   const charactersData = await fetch(
     `https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`
   );

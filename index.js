@@ -1,6 +1,7 @@
 import { createCharacterCard } from "./components/card/card.js";
 import { createSearchBar } from "./components/search-bar/search-bar.js";
 import { createShowAllButton } from "./components/show-all-button/show-all-button.js";
+import { updatePagination } from "./components/nav-pagination/nav-pagination.js";
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -14,7 +15,7 @@ const pagination = document.querySelector('[data-js="pagination"]');
 const main = document.querySelector("main");
 
 // States
-let maxPage;
+let maxPage = 42;
 let searchQuery = "";
 let pageIndex = 1;
 
@@ -39,7 +40,6 @@ const existingSearchBar = document.querySelector(".search-bar-container");
     nextButton.setAttribute("disabled", "disabled");
     pagination.textContent = "1 / 1";
     showAllButton.style.display = "block";
-    console.log("Button display is now:", showAllButton.style.display);
   });
   };
 

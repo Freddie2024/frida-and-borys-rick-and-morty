@@ -1,5 +1,5 @@
 export function createCharacterCard(
-  imageLink,
+  characterImage,
   characterName,
   characterStatus,
   characterType,

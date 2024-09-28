@@ -9,6 +9,11 @@
   margin-bottom: 10px;
   border: 2px solid var(--color-tertiary);
 }
+
+.card__image-container {
+  width: 300px;
+}
+
 .card {
   width: 300px;
   background-color: var(--color-secondary);

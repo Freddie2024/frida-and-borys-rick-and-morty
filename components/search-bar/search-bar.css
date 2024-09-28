@@ -55,6 +55,10 @@
   margin-left: 0px; 
 }
 
+.search-bar__button:hover {
+  transform: scale(1.05, 1.05);
+}
+
 /* tried to make background-color NOT turn grey after input, but it does not work
 .search-bar__input:active {
   background-color: var(--color-tertiary);

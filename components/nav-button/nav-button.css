@@ -1,14 +1,15 @@
 .button {
   color: var(--color-primary);
   font-family: var(--font-family);
-  border: 2px solid var(--color-tertiary);
-  background-color: var(--color-secondary);
+  border: 2px solid var(--color-secondary);
+  background-color: var(--color-tertiary);
   transition: background-color 0.25s 100ms;
 }
 
 .button:hover {
-  background-color: var(--color-tertiary);
+  background-color: var(--color-secondary);
   transform: scale(1.1,1.1);
+  border-radius: 50%; 
 }
 
 .button:disabled:hover {

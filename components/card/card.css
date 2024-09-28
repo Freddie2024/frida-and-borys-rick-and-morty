@@ -3,6 +3,7 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
   gap: 10px;
+  margin-bottom: 40px;
 }
 
 .card-container {

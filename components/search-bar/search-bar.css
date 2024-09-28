@@ -4,37 +4,52 @@
 
 .search-bar {
   border: 2px solid var(--color-tertiary);
-  padding: 10px 20px;
+  border-radius: 50%; 
+  padding: 5px;
   background-color: var(--color-secondary);
-  display: grid;
-  grid-template-columns: 1fr 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .search-bar__input {
   background-color: var(--color-tertiary);
   border: none;
-  color: var(--color-primary);
-}
-
-::placeholder {
+  border-top-left-radius: 20px; 
+  border-bottom-left-radius: 20px;
   color: var(--color-primary);
   font-family: var(--font-family);
+  font-size: 16px;
+  text-align: center;
 }
 
-.search-bar__input:not(:placeholder-shown) {
+.search-bar__input:focus {
+  outline: none; 
+}
+
+.search-bar__input:hover {
+  transform: scale(1.05,1.05);
+}
+
+::placeholder,
+.search-bar__input,
+.search-bar__input:not(:placeholder-shown),
+.search-bar__input:focus,
+.search-bar__input:active {
+  color: var(--color-primary);
+  font-family: var(--font-family);
+  font-size: 16px;
   background-color: var(--color-tertiary);
-  color: var(--color-primary);
-  font-family: var(--font-family);
 }
 
 .search-bar__button {
   border: none;
+  border-top-right-radius: 20px; 
+  border-bottom-right-radius: 20px;
   background-color: var(--color-tertiary);
 }
 
-.search-bar__input:focus {
-  outline: none;
-}
 /* tried to make background-color NOT turn grey after input, but it does not work
 .search-bar__input:active {
   background-color: var(--color-tertiary);
@@ -44,4 +59,14 @@
 .search-bar__icon {
   width: 20px;
   filter: invert(75%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(75%) contrast(90%); 
+}
+
+@media (max-width: 600px) {
+  ::placeholder,
+.search-bar__input,
+.search-bar__input:not(:placeholder-shown),
+.search-bar__input:focus,
+.search-bar__input:active {
+    font-size: 14px;
+  }
 }

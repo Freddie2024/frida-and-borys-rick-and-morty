@@ -21,7 +21,12 @@ let pageIndex = 1;
 prevButton.setAttribute("disabled", "disabled");
 
 async function fetchCharacters(pageIndex, searchQuery = "") {
-  main.innerHTML = ` `;
+
+  const existingCharacterContainer = document.querySelector(".character-container");
+if (existingCharacterContainer) {
+  existingCharacterContainer.remove();
+}
+
   createSearchBar((event) => {
     event.preventDefault();
     const inputText = event.target.elements.query.value;
@@ -40,6 +45,10 @@ async function fetchCharacters(pageIndex, searchQuery = "") {
   );
   const data = await charactersData.json();
 
+  const characterContainer = document.createElement("div");
+  characterContainer.classList.add("character-container");
+
+
   maxPage = data.info.pages;
   data.results.forEach((element) => {
     const characterImage = element.image;
@@ -47,14 +56,16 @@ async function fetchCharacters(pageIndex, searchQuery = "") {
     const characterStatus = element.status;
     const characterType = element.type;
     const characterOccurrences = element.episode.length;
-    createCharacterCard(
+    const characterCard = createCharacterCard(
       characterImage,
       characterName,
       characterStatus,
       characterType,
       characterOccurrences
     );
+    characterContainer.append(characterCard);
   });
+  main.append(characterContainer);
 }
 
 fetchCharacters(pageIndex, searchQuery);

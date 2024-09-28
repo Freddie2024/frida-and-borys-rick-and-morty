@@ -35,5 +35,5 @@ export function createCharacterCard(
         </li>
       </ul>
       `;
-  main.append(characterCard);
+  return characterCard;
 }

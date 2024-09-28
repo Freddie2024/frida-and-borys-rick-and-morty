@@ -1,3 +1,10 @@
+.character-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: 10px;
+}
+
 .card-container {
   margin-bottom: 10px;
   border: 2px solid var(--color-tertiary);

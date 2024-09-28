@@ -1,11 +1,11 @@
 .show-all-button {
-    display: none; 
+    display: none;
     padding: 10px 20px; 
     background-color: var(--color-secondary);
     color: var(--color-primary);
     font-family: var(--font-family);
     border: 2px solid var(--color-tertiary); 
-    border-radius: 5px; 
+    border-radius: 50%; 
     cursor: pointer;
     font-size: 16px; 
     transition: background-color 0.3s;

@@ -16,7 +16,7 @@ export function createCharacterCard(
           <div class="card__image-container">
             <img
               class="card__image"
-              src=${imageLink}
+              src=${characterImage}
               alt="image of ${characterName}"
             />
             <div class="card__image-gradient"></div>

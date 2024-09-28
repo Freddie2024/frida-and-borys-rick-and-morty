@@ -42,13 +42,13 @@ async function fetchCharacters(pageIndex, searchQuery = "") {
 
   maxPage = data.info.pages;
   data.results.forEach((element) => {
-    const imageLink = element.image;
+    const characterImage = element.image;
     const characterName = element.name;
     const characterStatus = element.status;
     const characterType = element.type;
     const characterOccurrences = element.episode.length;
     createCharacterCard(
-      imageLink,
+      characterImage,
       characterName,
       characterStatus,
       characterType,

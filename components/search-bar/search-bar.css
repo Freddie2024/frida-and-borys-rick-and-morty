@@ -1,5 +1,9 @@
 .search-bar-container {
-  width: 300px;
+  width: 280px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 0;
 }
 
 .search-bar {
@@ -11,6 +15,7 @@
   align-items: center;
   justify-content: center;
   text-align: center;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
 }
 
 .search-bar__input {

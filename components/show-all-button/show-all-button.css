@@ -1,6 +1,6 @@
 .show-all-button {
     display: none;
-    padding: 10px 20px; 
+    padding: 0; 
     background-color: var(--color-secondary);
     color: var(--color-primary);
     font-family: var(--font-family);
@@ -9,6 +9,15 @@
     cursor: pointer;
     font-size: 16px; 
     transition: background-color 0.3s;
+    width: 280px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); 
   }
   
   .show-all-button:hover {
@@ -19,4 +28,10 @@
   .show-all-button:disabled {
     display: none;
     cursor: not-allowed; 
+  }
+
+  @media (max-width: 600px) {
+    .show-all-button {
+    font-size: 14px;
+}
   }

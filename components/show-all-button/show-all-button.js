@@ -1,7 +1,7 @@
 export function createShowAllButton (main, fetchCharacters) {
     const showAllButton = document.createElement("button");
     showAllButton.classList.add("show-all-button");
-    showAllButton.textContent = "Show all characters";
+    showAllButton.textContent = ">>> Show all characters <<<";
     showAllButton.style.display = "none";
 
     showAllButton.addEventListener("click", () => {

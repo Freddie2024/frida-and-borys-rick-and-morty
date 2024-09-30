@@ -1,6 +1,8 @@
 import { createCharacterCard } from "./components/card/card.js";
-
 import { createSearchBar } from "./components/search-bar/search-bar.js";
+import { createShowAllButton } from "./components/show-all-button/show-all-button.js";
+import { updatePagination } from "./components/nav-pagination/nav-pagination.js";
+
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
   '[data-js="search-bar-container"]'
@@ -13,14 +15,22 @@ const pagination = document.querySelector('[data-js="pagination"]');
 const main = document.querySelector("main");
 
 // States
-let maxPage;
+let maxPage = 42;
 let searchQuery = "";
 let pageIndex = 1;
 
 prevButton.setAttribute("disabled", "disabled");
 
 async function fetchCharacters(pageIndex, searchQuery = "") {
-  main.innerHTML = ` `;
+
+  const existingCharacterContainer = document.querySelector(".character-container");
+if (existingCharacterContainer) {
+  existingCharacterContainer.remove();
+}
+
+const existingSearchBar = document.querySelector(".search-bar-container");
+  if (!existingSearchBar) {
+
   createSearchBar((event) => {
     event.preventDefault();
     const inputText = event.target.elements.query.value;
@@ -29,27 +39,38 @@ async function fetchCharacters(pageIndex, searchQuery = "") {
     prevButton.setAttribute("disabled", "disabled");
     nextButton.setAttribute("disabled", "disabled");
     pagination.textContent = "1 / 1";
+    showAllButton.style.display = "block";
   });
+  };
+
+  const showAllButton = createShowAllButton(main, fetchCharacters);
+
   const charactersData = await fetch(
     `https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`
   );
   const data = await charactersData.json();
 
+  const characterContainer = document.createElement("div");
+  characterContainer.classList.add("character-container");
+
   maxPage = data.info.pages;
   data.results.forEach((element) => {
-    const imageLink = element.image;
+    const characterImage = element.image;
     const characterName = element.name;
     const characterStatus = element.status;
     const characterType = element.type;
     const characterOccurrences = element.episode.length;
-    createCharacterCard(
-      imageLink,
+    const characterCard = createCharacterCard(
+      characterImage,
       characterName,
       characterStatus,
       characterType,
       characterOccurrences
     );
+    characterContainer.append(characterCard);
   });
+  main.append(characterContainer);
+  updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
 }
 
 fetchCharacters(pageIndex, searchQuery);
@@ -60,13 +81,11 @@ nextButton.addEventListener("click", () => {
   if (pageIndex <= maxPage) {
     pageIndex++;
     fetchCharacters(pageIndex);
-    prevButton.removeAttribute("disabled");
-    pagination.textContent = pageIndex + " / 42";
-    if (pageIndex == maxPage) {
-      console.log("reached last page");
-      return nextButton.setAttribute("disabled", "disabled");
-    }
-    console.log(pageIndex);
+    pagination.classList.add("rotate");
+    setTimeout(() => {
+      pagination.classList.remove("rotate");
+    }, 600); 
+    updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
   }
 });
 
@@ -77,11 +96,10 @@ prevButton.addEventListener("click", () => {
   if (pageIndex >= 1) {
     pageIndex--;
     fetchCharacters(pageIndex);
-    nextButton.removeAttribute("disabled");
-    pagination.textContent = pageIndex + " / 42";
-    if (pageIndex == 1) {
-      console.log("reached first page");
-      return prevButton.setAttribute("disabled", "disabled");
-    }
+    pagination.classList.add("rotate");
+    setTimeout(() => {
+      pagination.classList.remove("rotate");
+    }, 600);
+    updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
   }
 });

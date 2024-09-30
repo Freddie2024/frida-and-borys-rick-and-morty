@@ -1,5 +1,5 @@
 export function createCharacterCard(
-  imageLink,
+  characterImage,
   characterName,
   characterStatus,
   characterType,
@@ -16,8 +16,8 @@ export function createCharacterCard(
           <div class="card__image-container">
             <img
               class="card__image"
-              src=${imageLink}
-              alt="Rick Sanchez"
+              src=${characterImage}
+              alt="image of ${characterName}"
             />
             <div class="card__image-gradient"></div>
           </div>
@@ -35,5 +35,5 @@ export function createCharacterCard(
         </li>
       </ul>
       `;
-  main.append(characterCard);
+  return characterCard;
 }

@@ -2,6 +2,9 @@ import { createCharacterCard } from "./components/card/card.js";
 import { createSearchBar } from "./components/search-bar/search-bar.js";
 import { createShowAllButton } from "./components/show-all-button/show-all-button.js";
 import { updatePagination } from "./components/nav-pagination/nav-pagination.js";
+import { setupNextButton } from "./components/nav-button/nav-button.js";
+import { setupPrevButton } from "./components/nav-button/nav-button.js";
+
 
 const cardContainer = document.querySelector('[data-js="card-container"]');
 const searchBarContainer = document.querySelector(
@@ -22,13 +25,12 @@ let pageIndex = 1;
 prevButton.setAttribute("disabled", "disabled");
 
 async function fetchCharacters(pageIndex, searchQuery = "") {
-
+  console.log("Fetching characters for page: ", pageIndex);
   const existingCharacterContainer = document.querySelector(".character-container");
-if (existingCharacterContainer) {
-  existingCharacterContainer.remove();
-}
-
-const existingSearchBar = document.querySelector(".search-bar-container");
+  if (existingCharacterContainer) {
+    existingCharacterContainer.remove();
+  }
+  const existingSearchBar = document.querySelector(".search-bar-container");
   if (!existingSearchBar) {
 
   createSearchBar((event) => {
@@ -41,7 +43,7 @@ const existingSearchBar = document.querySelector(".search-bar-container");
     pagination.textContent = "1 / 1";
     showAllButton.style.display = "block";
   });
-  };
+  }
 
   const showAllButton = createShowAllButton(main, fetchCharacters);
 
@@ -75,6 +77,11 @@ const existingSearchBar = document.querySelector(".search-bar-container");
 
 fetchCharacters(pageIndex, searchQuery);
 
+setupNextButton(nextButton, pageIndex, maxPage, fetchCharacters, updatePagination, pagination, prevButton);
+setupPrevButton(prevButton, pageIndex, maxPage, fetchCharacters, updatePagination, pagination, nextButton);
+
+
+/*
 nextButton.addEventListener("click", () => {
   main.innerHTML = ` `;
 
@@ -103,3 +110,4 @@ prevButton.addEventListener("click", () => {
     updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
   }
 });
+*/

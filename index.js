@@ -17,6 +17,12 @@ const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 const main = document.querySelector("main");
 
+
+const noResultsMessage = document.createElement("p");
+noResultsMessage.textContent = "<<< No results found ! >>>";
+noResultsMessage.style.display = "none"; 
+main.append(noResultsMessage);
+
 // States
 let maxPage = 42;
 let searchQuery = "";
@@ -50,6 +56,19 @@ async function fetchCharacters(pageIndex, searchQuery = "") {
     `https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`
   );
   const data = await charactersData.json();
+
+  if (!data.results || data.results.length === 0) {
+    noResultsMessage.style.display = "block"; 
+    pagination.style.display = "none"; 
+    prevButton.style.display = "none"; 
+    nextButton.style.display = "none"; 
+    return; 
+  } else {
+    noResultsMessage.style.display = "none"; 
+    pagination.style.display = "block"; 
+    prevButton.style.display = "block"; 
+    nextButton.style.display = "block"; 
+  }
 
   const characterContainer = document.createElement("div");
   characterContainer.classList.add("character-container");

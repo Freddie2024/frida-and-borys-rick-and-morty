@@ -17,6 +17,12 @@ const nextButton = document.querySelector('[data-js="button-next"]');
 const pagination = document.querySelector('[data-js="pagination"]');
 const main = document.querySelector("main");
 
+
+const noResultsMessage = document.createElement("p");
+noResultsMessage.textContent = "No results found";
+noResultsMessage.style.display = "none"; 
+main.append(noResultsMessage);
+
 // States
 let maxPage = 42;
 let searchQuery = "";
@@ -25,7 +31,6 @@ let pageIndex = 1;
 prevButton.setAttribute("disabled", "disabled");
 
 async function fetchCharacters(pageIndex, searchQuery = "") {
-  console.log("Fetching characters for page: ", pageIndex);
   const existingCharacterContainer = document.querySelector(".character-container");
   if (existingCharacterContainer) {
     existingCharacterContainer.remove();
@@ -51,6 +56,19 @@ async function fetchCharacters(pageIndex, searchQuery = "") {
     `https://rickandmortyapi.com/api/character?page=${pageIndex}${searchQuery}`
   );
   const data = await charactersData.json();
+
+  if (!data.results || data.results.length === 0) {
+    noResultsMessage.style.display = "block"; 
+    pagination.style.display = "none"; 
+    prevButton.style.display = "none"; 
+    nextButton.style.display = "none"; 
+    return; 
+  } else {
+    noResultsMessage.style.display = "none"; 
+    pagination.style.display = "block"; 
+    prevButton.style.display = "block"; 
+    nextButton.style.display = "block"; 
+  }
 
   const characterContainer = document.createElement("div");
   characterContainer.classList.add("character-container");
@@ -79,35 +97,3 @@ fetchCharacters(pageIndex, searchQuery);
 
 setupNextButton(nextButton, pageIndex, maxPage, fetchCharacters, updatePagination, pagination, prevButton);
 setupPrevButton(prevButton, pageIndex, maxPage, fetchCharacters, updatePagination, pagination, nextButton);
-
-
-/*
-nextButton.addEventListener("click", () => {
-  main.innerHTML = ` `;
-
-  if (pageIndex <= maxPage) {
-    pageIndex++;
-    fetchCharacters(pageIndex);
-    pagination.classList.add("rotate");
-    setTimeout(() => {
-      pagination.classList.remove("rotate");
-    }, 600); 
-    updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
-  }
-});
-
-prevButton.addEventListener("click", () => {
-  const main = document.querySelector("main");
-  main.innerHTML = ` `;
-
-  if (pageIndex >= 1) {
-    pageIndex--;
-    fetchCharacters(pageIndex);
-    pagination.classList.add("rotate");
-    setTimeout(() => {
-      pagination.classList.remove("rotate");
-    }, 600);
-    updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
-  }
-});
-*/

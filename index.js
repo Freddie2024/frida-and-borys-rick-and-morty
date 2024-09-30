@@ -19,7 +19,7 @@ const main = document.querySelector("main");
 
 
 const noResultsMessage = document.createElement("p");
-noResultsMessage.textContent = "No results found";
+noResultsMessage.textContent = "<<< No results found ! >>>";
 noResultsMessage.style.display = "none"; 
 main.append(noResultsMessage);
 

@@ -23,6 +23,7 @@ body {
   color: var(--color-primary);
   padding: 20px;
   background-image: url(./assets/background-image.png);
+  min-height: 100vh;
 }
 
 main {

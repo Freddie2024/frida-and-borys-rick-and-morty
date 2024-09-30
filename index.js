@@ -25,7 +25,6 @@ let pageIndex = 1;
 prevButton.setAttribute("disabled", "disabled");
 
 async function fetchCharacters(pageIndex, searchQuery = "") {
-  console.log("Fetching characters for page: ", pageIndex);
   const existingCharacterContainer = document.querySelector(".character-container");
   if (existingCharacterContainer) {
     existingCharacterContainer.remove();
@@ -79,35 +78,3 @@ fetchCharacters(pageIndex, searchQuery);
 
 setupNextButton(nextButton, pageIndex, maxPage, fetchCharacters, updatePagination, pagination, prevButton);
 setupPrevButton(prevButton, pageIndex, maxPage, fetchCharacters, updatePagination, pagination, nextButton);
-
-
-/*
-nextButton.addEventListener("click", () => {
-  main.innerHTML = ` `;
-
-  if (pageIndex <= maxPage) {
-    pageIndex++;
-    fetchCharacters(pageIndex);
-    pagination.classList.add("rotate");
-    setTimeout(() => {
-      pagination.classList.remove("rotate");
-    }, 600); 
-    updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
-  }
-});
-
-prevButton.addEventListener("click", () => {
-  const main = document.querySelector("main");
-  main.innerHTML = ` `;
-
-  if (pageIndex >= 1) {
-    pageIndex--;
-    fetchCharacters(pageIndex);
-    pagination.classList.add("rotate");
-    setTimeout(() => {
-      pagination.classList.remove("rotate");
-    }, 600);
-    updatePagination(pageIndex, maxPage, prevButton, nextButton, pagination);
-  }
-});
-*/
